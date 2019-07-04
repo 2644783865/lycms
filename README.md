@@ -12,6 +12,7 @@ laravel(5.4+) + Light Year Admin
 
 #### 使用说明
 
+演示站点:demo.yeosz.top [http://demo.yeosz.top]
 后台帐号:admin@qq.com 密码:123456
 
 #### 特别感谢
