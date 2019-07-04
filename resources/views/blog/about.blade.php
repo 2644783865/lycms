@@ -18,93 +18,30 @@
 @component('blog.component.header', ['current'=>'about']) @endcomponent
 <article>
     <div class="whitebg about">
-        <div class="ab_box"><i class="avatar_pic"><img src="/blog/images/avatar.jpg"></i>
-            <h3>杨青青</h3>
-            <p>一个80后草根女站长！Web前端设计师、网页设计师。</p>
-            <p>天津智尚互联科技有限公司设计总监，青于蓝网络工作室创始人。</p>
+        <div class="ab_box"><i class="avatar_pic"><img src="https://avatars3.githubusercontent.com/u/2985405?s=460&v=4"></i>
+            <h3>1024</h3>
+            <p>因为喜欢，所以热爱。</p>
+            <p>长时间的学习，每天脑子里都是代码，逐渐从单一的字母，一点一点堆砌成自己的技术长城。</p>
         </div>
         <h2 class="gd_title">内心独白</h2>
         <p class="ab_dubai">
-            我叫杨青青，我是一个80后草根女站长！09年入行。我一直潜心研究网页前端技术，一边工作一边积累经验，分享一些个人博客模板，以及网站优化等心得。我入行早，大家也亲切的叫我“青姐”。我的个人博客搜索“个人博客”、“博客”，一直都靠前。最有意思的是，我有三年的时间没有去更新它，依然排在前面。虽然期间有很多的不容易，但是我都没有放弃过。选了这一行
-            ，就深深的喜欢上它。我喜欢一句话“冥冥中该来则来，无处可逃”。我喜欢上了前端设计，喜欢坐在电脑前敲代码，喜欢跟一堆程序员聊天。这辈子，我也逃不出去了，深深的陷了进来。 </p>
-        <span class="ly_button"><a href="http://www.yangqq.com/e/tool/gbook/?bid=1" target="_blank">留言</a></span>
-        <h2 class="gd_title">心路历程</h2>
-        <ul class="xinlu">
-            <li><a href="/" target="_blank"><i><img src="/blog/images/1.jpg"></i>
-                    <p>我是怎么评价自己的？</p>
-                    <span>我性格属于好静的，喜欢写写画画，自从读了计算机专业，那就更好静了，我可以两星期都不出门，但是半刻钟也不能离开电脑。</span></a></li>
-            <li><a href="/" target="_blank"><i><img src="/blog/images/2.jpg"></i>
-                    <p>个人博客，属于我的小世界！</p>
-                    <span>个人博客，用来做什么？我刚开始就把它当做一个我吐槽心情的地方，也就相当于一个网络记事本，写上一些关于自己生活工作中的小情小事，也会放上一些照片，音乐。每天工作回家后就能访问自己的网站，一边听着音乐，一边写写文章。</span></a>
-            </li>
-            <li><a href="/" target="_blank"><i><img src="/blog/images/3.jpg"></i>
-                    <p>【爱设计】安静地做一个爱设计的女子</p>
-                    <span>自从入了这行，很多人跟我说可以做网络教程，我也有考虑，但最终没有实现，因为我觉得在这个教程泛滥的时代，直接做一套免费的原创个人博客模板更为实在。</span></a></li>
-            <li><a href="/" target="_blank"><i><img src="/blog/images/4.jpg"></i>
-                    <p>【匆匆那些年】总结个人博客经历的这四年</p>
-                    <span>博客从最初的域名购买，到上线已经有四年的时间了，这四年的时间，有笑过，有怨过，有悔过，有执着过，也有放弃过…但最后还是坚持了下来，时间如此匆匆，等再回过头已来不及去弥补</span></a>
-            </li>
-            <li><a href="/" target="_blank"><i><img src="/blog/images/ad.jpg"></i>
-                    <p>我是怎么评价自己的？</p>
-                    <span>我性格属于好静的，喜欢写写画画，自从读了计算机专业，那就更好静了，我可以两星期都不出门，但是半刻钟也不能离开电脑。</span></a></li>
-            <li><a href="/" target="_blank"><i><img src="/blog/images/ad02.jpg"></i>
-                    <p>个人博客，属于我的小世界！</p>
-                    <span>个人博客，用来做什么？我刚开始就把它当做一个我吐槽心情的地方，也就相当于一个网络记事本，写上一些关于自己生活工作中的小情小事，也会放上一些照片，音乐。每天工作回家后就能访问自己的网站，一边听着音乐，一边写写文章。</span></a>
-            </li>
-            <li><a href="/" target="_blank"><i><img src="/blog/images/b01.jpg"></i>
-                    <p>【爱设计】安静地做一个爱设计的女子</p>
-                    <span>自从入了这行，很多人跟我说可以做网络教程，我也有考虑，但最终没有实现，因为我觉得在这个教程泛滥的时代，直接做一套免费的原创个人博客模板更为实在。</span></a></li>
-            <li><a href="/" target="_blank"><i><img src="/blog/images/b05.jpg"></i>
-                    <p>【匆匆那些年】总结个人博客经历的这四年</p>
-                    <span>博客从最初的域名购买，到上线已经有四年的时间了，这四年的时间，有笑过，有怨过，有悔过，有执着过，也有放弃过…但最后还是坚持了下来，时间如此匆匆，等再回过头已来不及去弥补</span></a>
-            </li>
-        </ul>
+            本人学识渊博、经验丰富，代码风骚、效率恐怖，C/C++、java、php无不精通，熟练掌握各种框架，深山苦练20余年，一天只睡4个小时，千里之外定位问题，瞬息之间修复上线。身体强壮、健步如飞，可连续编程100小时不休息，讨论技术方案5小时不喝水，上至带项目、出方案，下至盗账号、威胁PM，啥都能干。泡面矿泉水已准备好，学校不支持编程已辍学，家人不支持编程已断绝关系，老婆不支持编程已离婚，小孩不支持编程已送孤儿院，备用电源万兆光纤永不断电断网，门口已埋雷无人打扰。
+        </p>
         <h2 class="gd_title">我的博客</h2>
         <ul class="myblog">
-            <li><b>创建时间</b>
-                <p>2011年01月12日</p>
-                <p><a href="http://www.yangqq.com" target="_blank" class="buttons">主页</a></p>
-            </li>
-            <li><b>主题模板</b>
-                <p><a href="http://www.yangqq.com" target="_blank">《今夕何夕》</a></p>
-                <p><a href="/" class="buttons">下载</a></p>
+            <li>
+                <b>创建时间</b>
+                <p>2019年01月01日</p>
+                <p><a href="{{route('blog.index')}}" target="_blank" class="buttons">主页</a></p>
             </li>
             <li><b>网站程序</b>
-                <p>帝国CMS7.5</p>
-                <p><a href="http://www.yangqq.com" target="_blank" class="buttons">下载</a></p>
-            </li>
-            <li><b>服务器商</b>
-                <p>阿里云服务器</p>
-                <a href="/" class="buttons">1888代金券领取</a></li>
-            <li><b>免费空间</b>
-                <p><a href="http://www.4562.com/?u=3CE3E8" target="_blank">金牛云服</a></p>
-                <a href="/" class="buttons">国内主机免费领</a></li>
-        </ul>
-        <h2 class="gd_title">加入我们</h2>
-        <ul class="qq_join">
-            <li>
-                <section><img src="/blog/images/qq1.png">
-                    <p>网页设计交流吧①</p>
-                    <p>QQ群号：280998807</p>
-                </section>
+                <p>Lycms</p>
+                <p><a href="https://github.com/yeosz/lycms" target="_blank" class="buttons">源码</a></p>
             </li>
             <li>
-                <section><img src="/blog/images/qq2.png">
-                    <p>网页设计交流吧②</p>
-                    <p>QQ群号：291195645</p>
-                </section>
-            </li>
-            <li>
-                <section><img src="/blog/images/joinwx.png">
-                    <p>关注官方<b>微信</b>公众号</p>
-                    <p>掌握最新的模板信息！</p>
-                </section>
-            </li>
-            <li>
-                <section><img src="/blog/images/joinwxqun.png">
-                    <p>网页设计交流<b>微信群</b></p>
-                    <p>目前只接受群主拉进群</p>
-                </section>
+                <b>社交</b>
+                <p>Github</p>
+                <a href="https://github.com/yeosz" target="_blank" class="buttons">Github</a>
             </li>
         </ul>
     </div>
