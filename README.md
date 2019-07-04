@@ -1,8 +1,8 @@
 # lycms
 
 #### 介绍
-通用内容管理系统
-laravel(5.4+) + Light Year Admin
+通用内容管理系统  
+laravel(5.4+) + Light Year Admin  
 
 #### 安装教程
 
@@ -12,8 +12,8 @@ laravel(5.4+) + Light Year Admin
 
 #### 使用说明
 
-演示站点:demo.yeosz.top [http://demo.yeosz.top]
-后台帐号:admin@qq.com 密码:123456
+演示站点: [http://demo.yeosz.top]  
+后台帐号: admin@qq.com 密码:123456  
 
 #### 特别感谢
 
