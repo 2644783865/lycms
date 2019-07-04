@@ -1,0 +1,179 @@
+@charset "UTF-8";
+
+body {
+    background-color: #eceff4 !important;
+}
+
+img {
+    max-width: none !important;
+}
+
+.breadcrumb {
+    padding: 1px;
+    margin-bottom: 10px;
+    background-color: #eceff4 !important;
+}
+
+.card {
+    margin-bottom: 10px !important;
+}
+
+.card-body {
+    padding: 15px;
+}
+
+.li-upload-btn {
+    width: 120px !important;
+    height: 120px !important;
+    padding: 0 !important;
+}
+
+.lyear-uploads-pic {
+    padding: 0 !important;
+}
+
+.lyear-uploads-pic img {
+    width: 120px !important;
+    height: 120px !important;
+}
+
+.lyear-uploads-pic div {
+    margin-top: 8px;
+}
+
+.admin-do-alert {
+    z-index: 9999;
+    top: 2%;
+    position: fixed;
+    width: 50%;
+    margin: auto;
+    margin-left: -25%;
+    left: 50%;
+    display: none;
+}
+
+.layout-content {
+    height: calc(100vh - 80px) !important;
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-1 {
+    -webkit-box-flex: 1 !important;
+    -ms-flex: 1 !important;
+    flex: 1 !important;
+}
+
+.pagination {
+    margin: 0 !important;
+}
+
+.pagination-body {
+    text-align: right;
+    padding-right: 25px;
+}
+
+.scroll-y {
+    overflow-y: auto !important;
+}
+
+.pagination-info {
+    line-height: 31px;
+    display: inline-block;
+    vertical-align: top;
+    padding-right: 10px;
+}
+
+.w10 {
+    width: 100% !important;
+}
+
+.w8 {
+    width: 80% !important;
+}
+
+.w6 {
+    width: 60% !important;
+}
+
+.w4 {
+    width: 40% !important;
+}
+
+.w3 {
+    width: 30% !important;
+}
+
+.w2 {
+    width: 20% !important;
+}
+
+.margin-left-0 {
+    margin-left: 0 !important;
+}
+
+.margin-left--25 {
+    margin-left: -25px;
+}
+
+.margin-top-5 {
+    margin-top: 5px;
+}
+
+.margin-bottom-5 {
+    margin-bottom: 5px;
+}
+
+.btn-submit {
+    width: 72px !important;
+}
+
+.btn-cancel {
+    width: 72px !important;
+    margin-left: 15px;
+}
+
+.js-datepicker {
+    width: 108px !important;
+}
+
+.list-img {
+    display: block;
+    max-width: 30px !important;
+    max-height: 30px !important;
+    cursor: pointer;
+}
+
+.form-placeholder {
+    margin-top: 5px;
+    font-size: 11px;
+    color: #c3c7cd;
+}
+
+.form-required {
+    color: #ec0044;
+}
+
+.form-horizontal .checkbox, .form-horizontal .checkbox-inline, .form-horizontal .radio, .form-horizontal .radio-inline {
+    padding-top: 0 !important;
+}
+
+.btn-group-xs-2 {
+    min-width: 100px;
+}
+
+form .btn-group-xs-3 {
+    min-width: 150px;
+}
+
+#list-form > div {
+    margin: 2px 0;
+}
+
+.list-inline {
+    margin-left: 0 !important;
+}
+
+[v-cloak] {
+    display: none;
+}
