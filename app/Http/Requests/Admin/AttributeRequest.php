@@ -54,8 +54,7 @@ class AttributeRequest extends ApiRequest
                 'unique:attributes,code',
                 'required',
                 $codes,
-                'alpha',
-
+                'regex:/^[a-zA-Z][a-zA-Z0-9_]*$/',
             ],
             'name' => 'required',
             'alias_name' => 'required',

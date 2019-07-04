@@ -26,7 +26,7 @@ class FormRequest extends ApiRequest
             'code' => [
                 'required',
                 'unique:forms,code',
-                'alpha',
+                'regex:/^[a-zA-Z][a-zA-Z0-9_]*$/',
             ],
             'name' => 'required',
         ];
