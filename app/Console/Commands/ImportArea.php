@@ -17,7 +17,7 @@ class ImportArea extends Command
      *
      * @var string
      */
-    protected $signature = 'lyadmin:import-area';
+    protected $signature = 'lycms:import-area';
 
     /**
      * The console command description.

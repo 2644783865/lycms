@@ -35,12 +35,14 @@
                     @endforeach
                 </span>
             </div>
+            @if(!empty($article->attr_map['blog_summary']))
             <div class="con_info">
                 <b>简介</b>
-                个人博客，用来做什么？我刚开始就把它当做一个我吐槽心情的地方，也就相当于一个网络记事本，写上一些关于自己生活工作中的小情小事，也会放上一些照片，音乐。每天工作回家后就能访问自己的网站，一边听着音乐，一边写写文章。
+                {{$article->attr_map['blog_summary']}}
             </div>
+            @endif
             <div class="con_text">
-                <div>{{$article->attr_map['blog_content']}}</div>
+                <div>{!! $article->attr_map['blog_content'] !!}</div>
                 <div><span class="diggit">很赞哦！ ({{$article->page_view}}人围观)</span></div>
                 <div class="nextinfo">
                     @if(!empty($article->prev))<p>上一篇：<a href="{{route('blog.show',[$article->prev->id])}}">{{$article->prev->title}}</a></p> @endif
@@ -51,9 +53,9 @@
     </div>
     <!--lbox end-->
     <div class="rbox">
-        @component('blog.component.sidebar-ad', ['ad'=>$service->getAd(4, 1)]) @endcomponent
+        @component('blog.component.sidebar-ad', ['ad'=>$service->getAd('博客侧边栏1', 1)]) @endcomponent
         @component('blog.component.hot', ['articles'=>$service->getHot(6)]) @endcomponent
-        @component('blog.component.sidebar-ad', ['ad'=>$service->getAd(5, 1)]) @endcomponent
+        @component('blog.component.sidebar-ad', ['ad'=>$service->getAd('博客侧边栏2', 1)]) @endcomponent
         @component('blog.component.tag', ['tags'=>[]]) @endcomponent
     </div>
 </article>

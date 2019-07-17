@@ -5,7 +5,7 @@
     @slot('form')
     <div class="form-group">
         <div class="input-group">
-            <input type="text" class="form-control" value="{{$_GET['keyword']??''}}" name="keyword" placeholder="请输入名称">
+            <input type="text" class="form-control" value="{{$_GET['keyword']??''}}" name="keyword" placeholder="搜索关键词">
         <span class="input-group-btn">
             <button class="btn btn-danger" type="submit"><i class="fa fa-search"></i>查询</button>
         </span>
@@ -48,6 +48,11 @@
                     <a href="{{route('admin.admin.show', ['id'=>$item['id']])}}" class="btn btn-xs btn-info">
                         编辑
                     </a>
+                    @if($item['super']==2)
+                    <a href="{{route('admin.permission', ['id'=>$item['id']])}}" class="btn btn-xs btn-info">
+                        权限
+                    </a>
+                    @endif
                     <a data-href="{{route('admin.admin.delete', ['id'=>$item['id']])}}"
                        class="btn btn-xs btn-info btn-delete">
                         删除

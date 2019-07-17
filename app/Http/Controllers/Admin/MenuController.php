@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Middleware\CheckAdminPermit;
 use Yeosz\LaravelCurd\ApiException;
 use App\Http\Requests\Admin\MenuRequest;
 use App\Models\Menu;
 use Illuminate\Http\JsonResponse;
 use Illuminate\View\View;
+use Route;
 
 class MenuController extends CommonController
 {
@@ -35,8 +37,10 @@ class MenuController extends CommonController
     public function index()
     {
         $tree = $this->getTreeList('parent_id', 'sort', $this->model);
-        
-        return $this->xView('tree', $tree)->xView('admin.page.menu');
+
+        return $this->xView('routes', $this->getRoutes())
+            ->xView('tree', $tree)
+            ->xView('admin.page.menu');
     }
 
     /**
@@ -92,5 +96,25 @@ class MenuController extends CommonController
         }
 
         return $this->xDelete($id);
+    }
+
+    /**
+     * 获取路由
+     *
+     * @return array
+     */
+    protected function getRoutes()
+    {
+        $except = CheckAdminPermit::PERMITS;
+        $routes = Route::getRoutes();
+        $names = [];
+        foreach ($routes as $route) {
+            $name = $route->getName();
+            if (isset($except[$name])) continue;
+            if (substr($name, 0, 6) == 'admin.') {
+                $names[] = $name;
+            }
+        }
+        return $names;
     }
 }

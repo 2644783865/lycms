@@ -8,6 +8,8 @@ class Config extends Model
 {
     protected $guarded = ['id'];
 
+    public static $setting = [];
+
     /**
      * @var array 站点配置
      */
@@ -43,4 +45,24 @@ class Config extends Model
         self::CONFIG_SITE,
         self::CONFIG_EMAIL,
     ];
+
+    /**
+     *
+     * @param $key
+     * @return mixed|null
+     */
+    public static function getSetting($key)
+    {
+        $code = $key;
+        if (stripos($key, '.')) {
+            $keys = explode('.', $key);
+            $code = $keys[0];
+            $field = $keys[1];
+        }
+        if (empty(self::$setting[$code])) {
+            $row = self::where('code', $code)->first();
+            self::$setting[$code] = $row ? json_decode($row->value, true) : [];
+        }
+        return empty($field) ? self::$setting[$code] : (self::$setting[$code][$field] ?? null);
+    }
 }

@@ -3,11 +3,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
-    <title>LyAdmin后台管理系统</title>
+    <title>LyCMS后台管理系统</title>
     <link rel="icon" href="/favicon.ico" type="image/ico">
-    <meta name="keywords" content="LyAdmin后台管理系统">
-    <meta name="description" content="LyAdmin后台管理系统">
-    <meta name="author" content="yinqi">
+    <meta name="keywords" content="LyCMS后台管理系统">
+    <meta name="description" content="LyCMS后台管理系统">
     <link rel="stylesheet" href="/lyear/css/bootstrap.min.css">
     <link rel="stylesheet" href="/lyear/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="/lyear/css/style.min.css">
@@ -45,9 +44,10 @@
     <link rel="stylesheet" href="/js/vditor/vditor.classic.css"/>
     <script src="/js/vditor/vditor.min.js"></script>
     <!--剪贴板-->
-     <script type="text/javascript" src="/js/clipboard.min.js"></script>
-     <!--百度地图-->
-     <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=6a85063216e40050217dd26807eb39b9"></script>
+    <script type="text/javascript" src="/js/clipboard.min.js"></script>
+    <!--百度地图-->
+    <script type="text/javascript"
+            src="http://api.map.baidu.com/api?v=2.0&ak=6a85063216e40050217dd26807eb39b9"></script>
     <link rel="stylesheet" href="/css/admin.css">
     <script type="text/javascript" src="/js/admin.js"></script>
 </head>
@@ -61,7 +61,7 @@
             <!-- logo -->
             <div id="logo" class="sidebar-header">
                 <a href="javascript:">
-                    <img src="/lyear/images/logo-sidebar.png" title="LightYear" alt="LightYear"/>
+                    <img src="/logo.png" title="LightYear" style="height: 68px;margin: 0;" alt="LightYear"/>
                 </a>
             </div>
             <div class="lyear-layout-sidebar-scroll">
@@ -126,11 +126,12 @@
                             </ul>
                         </li>
                         <li class="dropdown dropdown-skin">
-                            <span class="icon-palette" onclick="uploadFile()"><i class="mdi mdi-cloud-upload"></i></span>
+                            <span class="icon-palette" onclick="uploadFile()"><i
+                                        class="mdi mdi-cloud-upload"></i></span>
                         </li>
                         <!--切主题配色-->
-                        @include('admin.theme')
-                        <!--切换主题配色-->
+                    @include('admin.theme')
+                    <!--切换主题配色-->
                     </ul>
                 </div>
             </nav>
@@ -158,16 +159,16 @@
 </div>
 <script type="text/javascript">
     // 菜单
-    var menuAction = "@php echo str_replace('\\', '\\\\', request()->route()->getActionName()); @endphp";
-    menuAction = menuAction.split('\\').pop();
+    var currentRoute = "{{request()->route()->getName()}}";
     var menus = @php echo json_encode(Session::get('menus.dict')); @endphp;
     var current_menu = parent_menu = 0;
-    if (typeof(menus[menuAction]) != 'undefined') {
-        current_menu = menus[menuAction];
+    if (currentRoute && typeof(menus[currentRoute]) != 'undefined') {
+        current_menu = menus[currentRoute];
         parent_menu = menus[current_menu].parent_id > 0 ? menus[current_menu].parent_id : 0;
         if (parent_menu > 0 && menus[parent_menu].parent_id > 0) {
             current_menu = parent_menu;
             parent_menu = menus[current_menu].parent_id > 0 ? menus[current_menu].parent_id : 0;
+            console.log(parent_menu);
         }
     }
     $(function () {

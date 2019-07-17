@@ -13,48 +13,32 @@ use Illuminate\Support\Collection;
 /**
  * Class BlogService
  * @package App\Services
- *
- * @method Builder|Content orderBy($column, $direction)
- * @method Builder|Content where($column, $operator = null, $value = null, $boolean = 'and')
- * @method Builder|Content limit($value)
- * @method Builder|Content when($value, $callback, $default = null)
- * @method Builder|Content select($columns = array())
- * @method Builder|Content orWhere($column, $operator = null, $value = null)
- *
  */
-class BlogService
+class BlogService extends CmsBaseService
 {
     /**
-     * @var integer
+     * @var string
      */
     const FORM_CODE = 'blog';
 
     /**
-     * @var integer
+     * @var string
      */
     const ATTRIBUTE_CATEGORY = 'blog_category';
 
     /**
-     * @var integer
+     * @var string
      */
     const ATTRIBUTE_TAG = 'blog_tag';
 
     /**
-     * @var Content $model
-     */
-    protected $model;
-
-    /**
-     * @var Builder $query
-     */
-    protected $query;
-
-    /**
      * BlogService constructor.
+     *
+     * @param string $code
      */
-    public function __construct()
+    public function __construct($code = self::FORM_CODE)
     {
-        $this->initQuery();
+        parent::__construct($code);
     }
 
     /**
@@ -97,33 +81,6 @@ class BlogService
         $list = $this->getModel()->orderBy('page_view', 'desc')->limit($limit)->get();
 
         return $list;
-    }
-
-    /**
-     * 获取广告
-     *
-     * @param $positionId
-     * @param int $limit
-     * @return Ad|Collection
-     */
-    public function getAd($positionId, $limit = 0)
-    {
-        $now = date('Y-m-d H:i:s');
-        $query = Ad::where('position_id', $positionId)
-            ->where('status', 1)
-            ->where('start_time', '<', $now)
-            ->where('end_time', '>', $now)
-            ->orderBy('sort', 'asc');
-
-        if ($limit == 1) {
-            $ad = $query->first();
-        } elseif ($limit) {
-            $ad = $query->limit($limit)->get();
-        } else {
-            $ad = $query->get();
-        }
-
-        return $ad;
     }
 
     /**
@@ -176,26 +133,6 @@ class BlogService
         $this->query = $this->query->whereIn('id', $contentIds);
         return $this;
     }
-
-    /**
-     * 分页
-     *
-     * @param int $pageSize
-     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
-     */
-    public function paginate($pageSize = 15)
-    {
-        $articles = $this->query->paginate($pageSize);
-
-        foreach ($articles as $article) {
-            /** @var Content $article */
-            $article->setAttribute('attr_map', $article->attr_map);
-        }
-        $this->initQuery();
-
-        return $articles;
-    }
-
 
     /**
      * 详情接口
@@ -252,50 +189,5 @@ class BlogService
     {
         $tags = empty($tags) ? [] : explode(',', $tags);
         return $tags;
-    }
-
-    /**
-     * 初始化查询
-     *
-     */
-    protected function initQuery()
-    {
-        $this->query = $this->getModel();
-    }
-
-    /**
-     * 魔术方法
-     *
-     * @param $method
-     * @param $args
-     * @return $this|null
-     */
-    public function __call($method, $args)
-    {
-        if (in_array($method, ['orderBy', 'limit', 'select', 'where', 'orWhere', 'when'])) {
-            $this->query = call_user_func_array([$this->query, $method], $args);
-            return $this;
-        } elseif (in_array($method, ['get', 'pluck',])) {
-            $this->query = call_user_func_array([$this->query, $method], $args);
-            $this->initQuery();
-            return $this;
-        }
-        return null;
-    }
-
-    /**
-     * 查询
-     *
-     * @return Builder
-     */
-    public function getModel()
-    {
-        if (!$this->model) {
-            $form = Form::whereCode(self::FORM_CODE)->first();
-            $formId = $form ? $form->id : 0;
-            $this->model = Content::whereFormId($formId)->where('status', 1);
-        }
-        $model = clone $this->model;
-        return $model;
     }
 }

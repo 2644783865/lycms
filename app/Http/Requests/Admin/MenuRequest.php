@@ -11,8 +11,7 @@ class MenuRequest extends ApiRequest
             'parent_id',
             'name',
             'link',
-            'controller',
-            'action',
+            'route',
             'icon',
             'show',
             'sort',
@@ -20,8 +19,7 @@ class MenuRequest extends ApiRequest
         'admin.menu.update' => [
             'name',
             'link',
-            'controller',
-            'action',
+            'route',
             'icon',
             'show',
             'sort',
@@ -44,12 +42,25 @@ class MenuRequest extends ApiRequest
         $rules = [
             'name' => 'required',
             'sort' => 'integer',
-            'controller' => 'alpha_dash',
-            'action' => 'alpha_dash',
+            'route' => [
+                'regex:/^[a-zA-Z.-_]*$/',
+            ],
         ];
         if (empty($this->id)) {
             $rules['parent_id'] = 'required|integer';
         }
+        $route = $this->input('route', '');
+        if ($route) {
+            $rules['route'][] = $this->id ? ('unique:menus,route,' . $this->id) : 'unique:menus,route';
+        }
         return $rules;
+    }
+
+    public function attributes()
+    {
+        return [
+            'route' => '权限',
+            'sort' => '排序',
+        ];
     }
 }

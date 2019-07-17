@@ -319,6 +319,20 @@
                                     @endswitch
                                 </div>
                             @endforeach
+                            @if(!empty($row))
+                                <div class="form-group">
+                                    <div class="form-inline">
+                                        <label for="title" class="col-sm-2 col-lg-1 control-label">发布时间</label>
+                                        <div class="col-sm-3">
+                                            <input name="created_at" type="text" autocomplete="off"
+                                                   class="form-control js-datetimepicker" id="created_at"
+                                                   value="{{$row->created_at ?? ''}}"
+                                                   data-side-by-side="true" data-locale="zh-cn"
+                                                   data-format="YYYY-MM-DD HH:mm:ss"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
                             @component('admin.component.form-submit', ['cancel'=>route('admin.content', ['form_id'=>$form->id])]) @endcomponent
                         </form>
                     </div>
@@ -331,8 +345,8 @@
     <script type="text/javascript">
         function addSpec(obj, name) {
             var objHtml = '<div class="div-group row margin-bottom-5 margin-left-0">';
-            objHtml += '<div class="input-group margin-bottom-5 col-md-2 pull-left"><input name="' + name + '[]" value="" class="form-control" placeholder="规格名称" required/></div>';
-            objHtml += '<div class="col-md-5 pull-left"><input name="' + name + '_specifications[]" type="text" class="form-control js-specs-input" value="" required/></div>';
+            objHtml += '<div class="input-group margin-bottom-5 col-md-2 pull-left"><input name="' + name + '[]" value="" class="form-control" placeholder="规格名称"/></div>';
+            objHtml += '<div class="col-md-5 pull-left"><input name="' + name + '_specifications[]" type="text" class="form-control js-specs-input" value=""/></div>';
             objHtml += '<div class="pull-left"><button type="button" class="btn" onclick="deleteRow(this)">删除</button></div></div>';
             $(obj).parents('.div-button').before(objHtml);
             $("#form-main").find(".js-specs-input").tagsInput({
@@ -345,8 +359,8 @@
         }
         function addAttribute(obj, name) {
             var objHtml = '<div class="div-group form-inline form-inline-group margin-bottom-5">';
-            objHtml += '<input name="' + name + '[]" value="" class="form-control" placeholder="属性名称" style="width:150px" required>';
-            objHtml += ' <input name="' + name + '_attributes[]" type="text" class="form-control" placeholder="属性值" value="" required>';
+            objHtml += '<input name="' + name + '[]" value="" class="form-control" placeholder="属性名称" style="width:150px">';
+            objHtml += ' <input name="' + name + '_attributes[]" type="text" class="form-control" placeholder="属性值" value="">';
             objHtml += ' <button class="btn" onclick="deleteRow(this)">删除</button></div>';
             $(obj).parents('.div-button').before(objHtml);
         }

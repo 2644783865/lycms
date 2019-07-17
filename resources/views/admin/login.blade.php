@@ -3,11 +3,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
-    <title>登录 - lyAdmin后台管理系统</title>
-    <link rel="icon" href="favicon.ico" type="image/ico">
-    <meta name="keywords" content="LightYear,光年,后台模板,后台管理系统,光年HTML模板">
-    <meta name="description" content="LightYear是一个基于Bootstrap v3.3.7的后台管理系统的HTML模板。">
-    <meta name="author" content="yinqi">
+    <title>LyCMS后台管理系统</title>
+    <link rel="icon" href="/favicon.ico" type="image/ico">
+    <meta name="keywords" content="LyCMS">
+    <meta name="description" content="LyCMS">
     <link href="/lyear/css/bootstrap.min.css" rel="stylesheet">
     <link href="/lyear/css/materialdesignicons.min.css" rel="stylesheet">
     <link href="/lyear/css/animate.css" rel="stylesheet">
@@ -63,12 +62,13 @@
     <div class="lyear-login">
         <div class="login-center">
             <div class="login-header text-center">
-                <a href="###"> <img alt="light year admin" src="/lyear/images/logo-sidebar.png"> </a>
+                <a href="/"> <img alt="LyCMS" src="/logo.png" style="height: 40px;"> </a>
             </div>
             <form action="{{route('admin.login')}}" method="post">
                 <div class="form-group has-feedback feedback-left">
                     {{ csrf_field() }}
-                    <input type="email" placeholder="请输入您的邮箱" class="form-control" name="email" value="{{old('email')}}" required/>
+                    <input type="email" placeholder="请输入您的邮箱" class="form-control" name="email" value="{{old('email')}}"
+                           required/>
                     <span class="mdi mdi-lock form-control-feedback" aria-hidden="true"></span>
                 </div>
                 <div class="form-group has-feedback feedback-left">
@@ -79,10 +79,6 @@
                     <button class="btn btn-block btn-primary" type="submit">立即登录</button>
                 </div>
             </form>
-            <hr>
-            <footer class="col-sm-12 text-center">
-                <p class="m-b-0">Copyright © 2019 <a href="http://lyear.itshubao.com">IT书包</a>. All right reserved</p>
-            </footer>
         </div>
     </div>
 </div>

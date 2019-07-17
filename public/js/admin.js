@@ -68,8 +68,7 @@ function showResponseError(obj, response) {
                 input = $('#' + i + '_tagsinput');
             } else if ($('#' + i).length) {
                 input = $('#' + i);
-            }
-            else if ($(obj).find("input[type=text][name='" + i + "']").length) {
+            } else if ($(obj).find("input[type=text][name='" + i + "']").length) {
                 input = $(obj).find("input[type=text][name='" + i + "']").eq(0);
             } else if ($(obj).find("input[type=password][name='" + i + "']").length) {
                 input = $(obj).find("input[type=password][name='" + i + "']").eq(0);

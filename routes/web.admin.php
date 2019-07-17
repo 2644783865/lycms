@@ -7,7 +7,7 @@ Route::group(['namespace' => 'Admin'], function () {
     Route::get('/admin/logout', 'LoginController@logout')->name('admin.logout');
 
     // 需要登录的路由
-    Route::group(['prefix' => 'admin', 'middleware' => ['web', 'auth']], function () {
+    Route::group(['prefix' => 'admin', 'middleware' => ['web', 'auth', 'admin.permit']], function () {
 
         // 首页
         Route::get('/', 'IndexController@index')->name('admin.index');
@@ -32,6 +32,8 @@ Route::group(['namespace' => 'Admin'], function () {
         Route::post('/admins/create', 'AdminController@store')->name('admin.admin.store');
         Route::get('/admins/{id}', 'AdminController@show')->name('admin.admin.show');
         Route::post('/admins/{id}', 'AdminController@update')->name('admin.admin.update');
+        Route::get('/admins/{id}/permission', 'AdminController@permission')->name('admin.permission');
+        Route::post('/admins/{id}/permission', 'AdminController@updatePermission')->name('admin.permission.update');
         Route::delete('/admins/{id}', 'AdminController@delete')->name('admin.admin.delete');
 
         // 菜单管理
