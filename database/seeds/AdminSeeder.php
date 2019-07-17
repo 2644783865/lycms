@@ -20,6 +20,7 @@ class AdminSeeder extends Seeder
             [
                 'id' => null,
                 'name' => '超级管理员',
+                'super' => 1,
                 'email' => 'admin@qq.com',
                 'password' => $password,
                 'avatar' => '',

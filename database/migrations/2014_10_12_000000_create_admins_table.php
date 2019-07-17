@@ -19,6 +19,8 @@ class CreateAdminsTable extends Migration
             $table->string('email', 64)->unique();
             $table->string('password', 64);
             $table->string('avatar', 256)->default('');
+            $table->tinyInteger('super', false, true)->default(2);
+            $table->text('menu_ids')->nullable();
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();

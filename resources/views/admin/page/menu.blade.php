@@ -19,7 +19,7 @@
                     <thead>
                     <tr>
                         <th class="col-sm-3">名称</th>
-                        <th class="col-sm-2">控制器</th>
+                        <th class="col-sm-2">权限</th>
                         <th class="col-sm-2">显示</th>
                         <th class="col-sm-5">管理</th>
                     </tr>
@@ -28,8 +28,9 @@
                     <tr v-for="(tree_node,index) in tree_nodes" :id="tree_node.id" :pid="tree_node.parent_id">
                         <td>&nbsp;<a :href="tree_node.link ? tree_node.link : 'javascript:'"
                                      :title="tree_node.link ? tree_node.link : ''">@{{tree_node.name}}</a></td>
-                        <td>@{{tree_node.controller ? (tree_node.controller+'@'+tree_node.action) : tree_node.action}}</td>
-                        <td><p v-if="tree_node.show==1">是</p><p v-else>否</p></td>
+                        <td>@{{tree_node.route}}</td>
+                        <td><p v-if="tree_node.show==1">是</p>
+                            <p v-else>否</p></td>
                         <td>
                             <div class="btn-group btn-group-xs-3">
                                 <a class="btn btn-xs btn-info" v-on:click="editNode(index)"><i
@@ -51,6 +52,7 @@
     <link rel="stylesheet" href="/js/jquery-treeTable/jquery.treeTable.css" type="text/css">
     <script type="text/javascript" src="/js/jquery-treeTable/jquery.treeTable.js"></script>
     <script type="text/javascript">
+        var routes = @php echo json_encode($routes); @endphp;
         $.ajaxSettings.async = false;
         var treeTable;
         var app = new Vue({
@@ -60,6 +62,15 @@
                 tree_nodes: []
             },
             methods: {
+                getRoutes: function (selected) {
+                    var str = selectedStr = '';
+                    str = '<option value=""> 空 </option>';
+                    for (i in routes) {
+                        selectedStr = routes[i] == selected ? 'selected="selected"' : '';
+                        str += '<option value="' + routes[i] + '"' + selectedStr + '>' + routes[i] + '</option>';
+                    }
+                    return str;
+                },
                 loadNodes: function () {
                     var url = '/admin/menus/nodes';
                     var nodes = [];
@@ -108,6 +119,7 @@
                 },
                 createNode: function (index) {
                     var pname = '顶级';
+                    var selectedStr = this.getRoutes('');
                     var pid = this.tree_id;
                     if (index > -1) {
                         var item = this.tree_nodes[index];
@@ -123,9 +135,8 @@
                         '<div class="form-group"><label class="control-label">父级</label>' +
                         '<input type="text" class="form-control" value="' + pname + '" readonly /><input type="hidden" name="parent_id" value="' + pid + '" ></div>' +
                         '<div class="form-group"><label class="control-label">链接地址</label><input type="text" class="form-control" name="link" value="" /></div>' +
-                        '<div class="form-group"><label class="control-label">控制器</label><div class="form-inline">' +
-                        '<input type="text" class="form-control" name="controller" value="" placeholder="控制器名称" />' +
-                        '<input type="text" class="form-control" name="action" value="" placeholder="操作名称" /></div></div>' +
+                        '<div class="form-group"><label class="control-label">权限</label><div class="form-inline">' +
+                        '<select class="form-control" name="route" id="route">' + selectedStr + '</select></div></div>' +
                         '<div class="form-group"><label class="control-label">显示</label><div class="form-inline">' +
                         '<input type="text" class="form-control" style="width:80px;" name="sort" value="" placeholder="排序" /> ' +
                         '<input type="text" class="form-control" style="width:120px;" name="icon" value="" placeholder="icon" /> ' +
@@ -162,6 +173,7 @@
                         item.show == 1 ? 'selected="selected"' : '',
                         item.show == 2 ? 'selected="selected"' : ''
                     ];
+                    var selectedStr = this.getRoutes(item.route);
                     $.confirm({
                         title: '修改节点',
                         columnClass: 'col-md-6 col-md-offset-3',
@@ -170,9 +182,8 @@
                         '<div class="form-group"><label class="control-label">名称</label><input type="text" class="form-control" name="name" value="' + item.name + '" /></div>' +
                         '<div class="form-group"><label class="control-label">父级</label><input type="text" class="form-control" value="' + pname + '" readonly /></div>' +
                         '<div class="form-group"><label class="control-label">链接地址</label><input type="text" class="form-control" name="link" value="' + item.link + '" /></div>' +
-                        '<div class="form-group"><label class="control-label">控制器</label><div class="form-inline">' +
-                        '<input type="text" class="form-control" name="controller" value="' + item.controller + '" placeholder="控制器名称"/> ' +
-                        '<input type="text" class="form-control" name="action" value="' + item.action + '" placeholder="操作名称" /></div></div>' +
+                        '<div class="form-group"><label class="control-label">权限</label><div class="form-inline">' +
+                        '<select class="form-control" name="route" id="route">' + selectedStr + '</select></div></div>' +
                         '<div class="form-group"><label class="control-label">显示</label><div class="form-inline">' +
                         '<input type="text" class="form-control" name="sort" value="' + item.sort + '" style="width:80px;" placeholder="排序" /> ' +
                         '<input type="text" class="form-control" name="icon" value="' + item.icon + '" style="width:120px;" placeholder="icon" /> ' +

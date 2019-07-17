@@ -12,7 +12,7 @@
 			</a>
 		</span>
         @endif
-        <p class="blogtext">{{$article->attr_map['blog_content'] ? mb_substr($article->attr_map['blog_content'], 0, 200) : ''}}</p>
+        <p class="blogtext">{{empty($article->attr_map['blog_summary']) ? mb_substr($article->attr_map['blog_content'], 0, 200) : mb_substr($article->attr_map['blog_summary'], 0, 200)}}</p>
         <p class="bloginfo">
             <span>{{$article->created_at->format('Y年m月d日')}}</span>
 			<span>

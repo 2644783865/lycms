@@ -32,9 +32,9 @@
     </div>
     <div class="rbox">
         @component('blog.component.hot', ['articles'=>$service->getHot(6)]) @endcomponent
-        @component('blog.component.sidebar-ad', ['ad'=>$service->getAd(4, 1)]) @endcomponent
+        @component('blog.component.sidebar-ad', ['ad'=>$service->getAd('博客侧边栏1', 1)]) @endcomponent
         @component('blog.component.top', ['articles'=>$service->getTop(6)]) @endcomponent
-        @component('blog.component.sidebar-ad', ['ad'=>$service->getAd(5, 1)]) @endcomponent
+        @component('blog.component.sidebar-ad', ['ad'=>$service->getAd('博客侧边栏2', 1)]) @endcomponent
     </div>
 </article>
 @component('blog.component.footer') @endcomponent

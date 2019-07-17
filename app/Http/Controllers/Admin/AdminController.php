@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Illuminate\Http\JsonResponse;
 use App\Models\Admin;
+use App\Models\Menu;
 use App\Http\Requests\Admin\AdminRequest;
 use Illuminate\Database\Eloquent\Builder;
 use Yeosz\LaravelCurd\ApiException;
@@ -138,5 +139,49 @@ class AdminController extends CommonController
         }
 
         return $this->update($id, $request);
+    }
+
+    /**
+     * 获取权限
+     *
+     * @param $id
+     * @return View
+     * @throws \Exception
+     */
+    public function permission($id)
+    {
+        $admin = Admin::find($id);
+        if (!$admin) {
+            throw new ApiException('用户不存在');
+        }
+        $menuIds = empty($admin->menu_ids) ? [] : explode(',', $admin->menu_ids);
+        $tree = $this->getTreeList('parent_id', 'sort', Menu::class);
+
+        $tree = $this->toTree($tree);
+        return $this->xView('page_title', '用户权限')
+            ->xView('menu_ids', $menuIds)
+            ->xView('admin', $admin)
+            ->xView('menus', $tree)
+            ->xView('admin.admin.permission');
+    }
+
+    /**
+     * 修改权限
+     *
+     * @param $id
+     * @param Request $request
+     * @return JsonResponse
+     * @throws ApiException
+     */
+    public function updatePermission($id, Request $request)
+    {
+        $menuIds = $this->getRequestParamIds($request, false, 'menu_ids');
+        $menuIds = implode(',', $menuIds);
+
+        $admin = Admin::find($id);
+        if ($admin) {
+            $admin->update(['menu_ids' => $menuIds]);
+        }
+        return $this->responseSuccess();
     }
 }

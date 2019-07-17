@@ -18,10 +18,15 @@ class AdPositionRequest extends ApiRequest
      */
     public function rules()
     {
-        $rules = [
-            'name' => 'required',
-        ];
-
+        if (empty($this->id)) {
+            $rules = [
+                'name' => 'required|unique:ad_positions,name',
+            ];
+        } else {
+            $rules = [
+                'name' => 'required|unique:ad_positions,name,' . $this->id,
+            ];
+        }
         return $this->xEditableRules($rules);
     }
 }

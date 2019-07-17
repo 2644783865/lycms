@@ -28,12 +28,13 @@ class AdPositionController extends CommonController
         $name = $request->input('name', '');
 
         if (!empty($name)) {
-            $new = [
-                'name' => $name,
-                'status' => 1,
-            ];
-            $this->xStore($new);
-
+            if (!AdPosition::withTrashed()->whereName($name)->exists()) {
+                $new = [
+                    'name' => $name,
+                    'status' => 1,
+                ];
+                $this->xStore($new);
+            }
             return redirect(route('admin.ad-position'));
         }
 

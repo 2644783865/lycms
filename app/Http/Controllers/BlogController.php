@@ -78,6 +78,9 @@ class BlogController extends Controller
     public function show($id)
     {
         $article = $this->service->getDetail($id);
+        if (!$article) {
+            return redirect(route('blog.index'));
+        }
         return $this->xView('article', $article)->xView('blog.detail');
     }
 

@@ -8,7 +8,7 @@
                 @component('admin.component.options', ['options'=>App\Models\Attribute::INPUT,'selected'=>($_GET['input']??'')]) @endcomponent
             </select>
             <div class="input-group">
-                <input type="text" class="form-control" value="{{$_GET['keyword']??''}}" name="keyword">
+                <input type="text" class="form-control" value="{{$_GET['keyword']??''}}" name="keyword" placeholder="搜索关键词">
                 <span class="input-group-btn">
         <button class="btn btn-danger" type="submit"><i class="fa fa-search"></i>查询</button>
         </span>

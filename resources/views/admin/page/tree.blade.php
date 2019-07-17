@@ -64,8 +64,8 @@
                     <tbody>
                     <tr v-for="(tree_node,index) in tree_nodes" :id="tree_node.id" :pid="tree_node.parent_id">
                         <td>&nbsp;@{{tree_node.name}}</td>
-                        <td><p v-if="tree_node.status==1">是</p>
-                            <p v-else>否</p></td>
+                        <td><p v-if="tree_node.status==1">启用</p>
+                            <p v-else>禁用</p></td>
                         <td>
                             <div class="btn-group btn-group-xs-3">
                                 <a :data-id="tree_node.id" class="btn btn-xs btn-info" v-on:click="editNode(index)"><i

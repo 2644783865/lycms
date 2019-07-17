@@ -18,7 +18,7 @@
 @component('blog.component.header', ['current'=>'index']) @endcomponent
 <article>
     <div class="lbox">
-        @if($ad=$service->getAd(2, 1))
+        @if($ad=$service->getAd('博客首页banner', 1))
         <div class="ad whitebg"><img src="{{$ad->image}}"></div>
         @endif
         <div class="whitebg bloglist">
@@ -30,9 +30,9 @@
     </div>
     <div class="rbox">
         @component('blog.component.hot', ['articles'=>$service->getHot(6)]) @endcomponent
-        @component('blog.component.sidebar-ad', ['ad'=>$service->getAd(4, 1)]) @endcomponent
+        @component('blog.component.sidebar-ad', ['ad'=>$service->getAd('博客侧边栏1', 1)]) @endcomponent
         @component('blog.component.top', ['articles'=>$service->getTop(6)]) @endcomponent
-        @component('blog.component.sidebar-ad', ['ad'=>$service->getAd(5, 1)]) @endcomponent
+        @component('blog.component.sidebar-ad', ['ad'=>$service->getAd('博客侧边栏2', 1)]) @endcomponent
     </div>
 </article>
 @component('blog.component.footer') @endcomponent

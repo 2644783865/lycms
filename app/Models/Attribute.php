@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Rules\EachRequired;
+use App\Rules\TreeRequired;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -82,6 +84,12 @@ class Attribute extends Model
      */
     public static function getInputRules($input, $default = [])
     {
+        if (in_array($input, ['attribute', 'specification'])) {
+            $default[] = new EachRequired;
+        }
+        if ($input == 'tree' && in_array('required', $default)) {
+            $default[] = new TreeRequired;
+        }
         $rules = [];
         if (!empty($default)) {
             $default = is_array($default) ? $default : [$default];

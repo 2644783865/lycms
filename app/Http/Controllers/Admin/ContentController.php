@@ -43,6 +43,8 @@ class ContentController extends CommonController
     public function index(Request $request)
     {
         $formId = $request->input('form_id', 0);
+        $time1 = $request->input('time1', '');
+        $time2 = $request->input('time2', '');
         $keyword = $request->input('keyword', '');
         $pageSize = $request->input('page_size', self::PAGE_SIZE);
 
@@ -53,11 +55,15 @@ class ContentController extends CommonController
         $select = ['contents.*', 'forms.name as form_name'];
         $list = Content::leftJoin('forms', 'forms.id', '=', 'contents.form_id')
             ->when($formId, function (Builder $query) use ($formId) {
-                $query->where('form_id', $formId);
+                $query->where('contents.form_id', $formId);
+            })->when($time1, function (Builder $query) use ($time1) {
+                $query->where('contents.created_at', '>=', $time1);
+            })->when($time2, function (Builder $query) use ($time2) {
+                $query->where('contents.created_at', '<=', $time2);
             })->when($keyword, function (Builder $query) use ($keyword) {
-                $query->where('title', 'like', "%$keyword%");
-            })->orderBy('top', 'desc')
-            ->orderBy('id', 'desc')
+                $query->where('contents.title', 'like', "%$keyword%");
+            })->orderBy('contents.top', 'desc')
+            ->orderBy('contents.id', 'desc')
             ->paginate($pageSize, $select);
 
         if ($form) {
@@ -163,14 +169,14 @@ class ContentController extends CommonController
      *
      * @param $id
      * @return JsonResponse
-     * @throws ApiException
+     * @throws \Exception
      */
     public function show($id)
     {
         $content = Content::find($id);
 
         if (!$content) {
-            throw new ApiException('内容不存在', ApiException::ERROR_NOT_FOUND);
+            throw new \Exception('内容不存在', 404);
         }
 
         $forms = Form::withTrashed()->where(function (Builder $query) use ($content) {
@@ -270,7 +276,7 @@ class ContentController extends CommonController
      */
     protected function getRequestContent(&$id, Request $request, Form $form)
     {
-        $newContent = $request->only(['form_id', 'title', 'cover', 'status']);
+        $newContent = $request->only(['form_id', 'title', 'cover', 'status', 'created_at']);
 
         $attributes = Attribute::get(['id', 'code', 'input'])->keyBy('code');
 

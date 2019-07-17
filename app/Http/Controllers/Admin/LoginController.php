@@ -84,23 +84,28 @@ class LoginController extends Controller
      */
     protected function authenticated(Request $request, $user)
     {
-        $this->initMenus();
+        $this->initMenus($user);
         return redirect(route('admin.index'));
     }
 
     /**
      * 初始化菜单
+     *
+     * @param $user
      */
-    protected function initMenus()
+    protected function initMenus($user)
     {
         if (!Session::get('menus')) {
+            $menuIds = $user->menu_ids ? explode(',', $user->menu_ids) : [];
             /** @var Menu $menus */
-            $menus = Menu::query()->orderBy('parent_id', 'asc')->orderBy('sort', 'asc')->get();
+            $menus = Menu::when($user->super == 2, function ($query) use ($menuIds) {
+                $query->whereIn('id', $menuIds);
+            })->orderBy('parent_id', 'asc')->orderBy('sort', 'asc')->get();
             $menuDict = [];
             foreach ($menus as $menu) {
                 $menuDict[$menu->id] = [$menu];
-                if ($menu->controller && $menu->action) {
-                    $menuDict[$menu->controller . '@' . $menu->action] = $menu->id;
+                if ($menu->route) {
+                    $menuDict[$menu->route] = $menu->id;
                 }
                 $menuDict[$menu->id] = $menu->toArray();
             }
