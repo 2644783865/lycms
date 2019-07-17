@@ -2,7 +2,7 @@
 
 #### 介绍
 通用内容管理系统  
-laravel(5.4+) + Light Year Admin  
+laravel5.8 + Light Year Admin  
 
 #### 安装教程
 
