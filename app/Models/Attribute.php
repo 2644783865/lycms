@@ -61,7 +61,7 @@ class Attribute extends Model
         'number' => ['numeric'],
         'email' => ['email'],
         'mobile' => ['regex:/^1\d{10}$/'],
-        'tel' => ['regex:(^1\d{10}$)|(^(0\d{2,3}\-)?\d{7,8}$)'],
+        'tel' => ['regex:/(^1\d{10}$)|(^(0\d{2,3}\-)?\d{7,8}$)/'],
         'json' => ['json'],
         'ip' => ['ip'],
         'id_card' => ['regex:/(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/'],
@@ -70,7 +70,7 @@ class Attribute extends Model
         'datetime' => ['date_format:Y-m-d H:i:s'],
         'tree' => ['array'],
         'area' => ['array'],
-        'location' => ['regex:/^\d[.,\d]*\d$/'],
+        'location' => ['regex:/^\d+\.?\d+,\d+\.?\d+$/'],
         'attribute' => ['array'],
         'specification' => ['array'],
     ];
@@ -87,15 +87,16 @@ class Attribute extends Model
         if (in_array($input, ['attribute', 'specification'])) {
             $default[] = new EachRequired;
         }
-        if ($input == 'tree' && in_array('required', $default)) {
-            $default[] = new TreeRequired;
-        }
+        
         $rules = [];
         if (!empty($default)) {
             $default = is_array($default) ? $default : [$default];
             $rules = $default;
         }
         if (!empty(self::RULES[$input])) {
+			if (in_array('array', self::RULES[$input]) && in_array('required', $default)) {
+				$rules[] = new TreeRequired;
+			}
             $rules = array_merge($rules, self::RULES[$input]);
         }
         return $rules;
