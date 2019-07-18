@@ -9,7 +9,11 @@ laravel5.8 + Light Year Admin
 
 1. composer install
 2. 配置.env
-3. 执行 php artisan migrate:refresh --seed
+3. 执行以下命令
+```
+php artisan key:generate
+php artisan migrate:refresh --seed
+```
 
 #### 使用说明
 
